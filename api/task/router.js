@@ -9,8 +9,11 @@ router.get('/', async (req, res, next) => {
   } catch(err) { next(err) }
 });
 
-router.post('/', checkTaskBody, (req, res, next) => {
-  res.json({msg: "post to be implemented"})
+router.post('/', checkTaskBody, async (req, res, next) => {
+  try {
+    const task = await Task.create(req.body);
+    res.json(task);
+  } catch(err) { next(err) }
 });
 
 router.use((err, req, res, next) => { // eslint-disable-line
