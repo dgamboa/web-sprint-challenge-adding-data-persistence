@@ -2,8 +2,11 @@ const router = require('express').Router();
 // import middleware
 const Project = require('./model');
 
-router.get('/', (req, res, next) => {
-  res.json({msg: "get to be implemented"})
+router.get('/', async (req, res, next) => {
+  try {
+    const projects = await Project.getAll();
+    res.json(projects);
+  } catch(err) { next(err) }
 });
 
 router.post('/', (req, res, next) => {
