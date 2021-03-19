@@ -2,8 +2,11 @@ const router = require('express').Router();
 // import middleware
 const Task = require('./model');
 
-router.get('/', (req, res, next) => {
-  res.json({msg: "get to be implemented"})
+router.get('/', async (req, res, next) => {
+  try {
+    const tasks = await Task.getAll();
+    res.json(tasks);
+  } catch(err) { next(err) }
 });
 
 router.post('/', (req, res, next) => {
