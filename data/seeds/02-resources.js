@@ -1,13 +1,13 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('resources').truncate()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('resources').insert([
+        {resource_name: "Baseball Equipment", resource_description: "Includes bats, gloves and balls"},
+        {resource_name: "Lambda Cards", resource_description: "Flashcards with web core concepts"},
+        {resource_name: "Das Keyboard", resource_description: "Mechanical keyboard for better typing experience"},
       ]);
     });
 };
