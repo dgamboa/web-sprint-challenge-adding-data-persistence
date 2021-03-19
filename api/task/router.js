@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// import middleware
+const {checkTaskBody} = require('./middleware');
 const Task = require('./model');
 
 router.get('/', async (req, res, next) => {
@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
   } catch(err) { next(err) }
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', checkTaskBody, (req, res, next) => {
   res.json({msg: "post to be implemented"})
 });
 
